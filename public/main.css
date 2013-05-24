@@ -1,0 +1,9 @@
+#leftbox {
+margin-right: -2;
+float: left;
+}
+
+#rightbox {
+margin-left: -3;
+float: left;
+}

@@ -1,7 +1,7 @@
 require 'sinatra'
 
 get '/game/:passedgameid' do
-   erb :game, :locals => { :gameid => "#{params[:passedname]}" }
+   erb :game, :locals => { :gameid => "#{params[:passedgameid]}" }
 end
 
 get '/test1' do

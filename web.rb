@@ -13,10 +13,11 @@ get '/' do
     <body style="font-family: monospace">
 
     <center> 
-    <h1>
+    <h1 style="font-family: courier">
     &nbsp/| _ _..|\\/|..<br/>
     /-|_\\(_||| &nbsp|||
     </h1>
+
     </center>
 
     <div id="leftbox" style="margin-right: -2; float: left">
@@ -24,7 +25,7 @@ get '/' do
         Player 1
         </center>
         <textarea rows="30" cols="40">
-        At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+        Player 1 types here.
         </textarea>
     </div>
     <div id="rightbox" style="margin-left: -3; float: left; ">
@@ -32,7 +33,7 @@ get '/' do
         Player 2
         </center>
         <textarea rows="30" cols="40">
-        At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+        Player 2 types here.
         </textarea>
     </div>
 

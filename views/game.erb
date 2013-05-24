@@ -45,9 +45,58 @@
     Player 2 types here.
     </textarea>
 </div>
+<div style="clear: both;"></div>
 
 <div id="leftdump"></div>
+<br/>
 <div id="rightdump"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="/main.js"></script>
+    <script>
+    //http://jsfiddle.net/vpp2hmro/
+
+        function poll_left(){
+           setTimeout(function(){
+              $.ajax({ url: "/state?left="+$('#leftbox textarea')[0].value, 
+                success: function(data){
+                  $('#leftdump')[0].innerHTML = $('#leftbox textarea')[0].value;
+                  console.log("rightcontent: " + $( $.parseHTML(data)).filter('#rightcontent').html());
+                  if (! $('#rightbox textarea').is(":focus")) {
+                    $('#rightbox textarea').val( $( $.parseHTML(data)).filter('#rightcontent').html() );
+                  }
+                  poll_left();
+                }, 
+                error: function(data) {
+                  $('#leftdump')[0].innerHTML = "hmmmm, service connection is broken.";
+                  poll_left();
+              }, dataType: "html"});
+          }, 1000);
+        }
+        function poll_right(){
+           setTimeout(function(){
+              $.ajax({ url: "/state?right="+$('#rightbox textarea')[0].value, 
+                success: function(data){
+                  $('#rightdump')[0].innerHTML = $('#rightbox textarea')[0].value;
+                  console.log("leftcontent: " + $( $.parseHTML(data)).filter('#leftcontent').html());
+                  if (! $('#leftbox textarea').is(":focus")) {
+                    $('#leftbox textarea').val( $( $.parseHTML(data)).filter('#leftcontent').html() );
+                  }
+                  poll_right();
+                }, 
+                error: function(data) {
+                  $('#rightdump')[0].innerHTML = "hmmmm, service connection is broken.";
+                  poll_right();
+                }, dataType: "html"});
+          }, 1000);
+        }
+
+        $(document).ready(function(){
+           poll_left();
+           poll_right();
+        }());
+    </script>
 
 </body>
 </html>
